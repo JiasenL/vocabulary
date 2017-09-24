@@ -1,0 +1,31 @@
+<div class="container">
+
+<b><a data-toggle="collapse" href="#collapse_day0" aria-expanded="false" aria-controls="collapse_day0">List: 0 day</a> (<%=@revise_phase0.count %>)</b>
+<div class="collapse" id="collapse_day0">
+<%= render :partial => "cell", :locals => {revise_phase: @revise_phase0} %>
+</div>
+
+<h3>List: 1 day (<%=@revise_phase1.count %>)</h3>
+<%= render :partial => "cell", :locals => {revise_phase: @revise_phase1} %>
+
+
+<b><a data-toggle="collapse" href="#collapse_day2" aria-expanded="false" aria-controls="collapse_day2">Day 2:</a> (<%=@revise_phase1_1.count %>)
+</b>
+<div class="collapse" id="collapse_day2">
+<%= render :partial => "cell", :locals => {revise_phase: @revise_phase1_1} %>
+</div>
+
+
+<h3>List: 7 days</h3>
+<%= render :partial => "cell", :locals => {revise_phase: @revise_phase2} %>
+<b><a data-toggle="collapse" href="#collapse_day8" aria-expanded="false" aria-controls="collapse_day8">Day 8:</a> (<%=@revise_phase2_1.count %>)
+</b>
+<div class="collapse" id="collapse_day8">
+<%= render :partial => "cell", :locals => {revise_phase: @revise_phase2_1} %>
+</div>
+
+<h3>List: 1 month</h3>
+<%= render :partial => "cell", :locals => {revise_phase: @revise_phase3} %>
+<h3>List: 3 months</h3>
+<%= render :partial => "cell", :locals => {revise_phase: @revise_phase4} %>
+</div>

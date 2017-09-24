@@ -1,0 +1,33 @@
+<div class="container">
+<%= form_for :dictionary do |f| %>
+  <p>
+    <%= f.text_field :name,:value =>"" , :autofocus=>true %>
+    <%= f.submit  "Save Vocab"%>
+  </p>
+<% end %>
+<h4>Stats</h4>
+<p>Vocab List: <%= @dictionary_total.count %></p>
+<h4>List</h4>
+  <% @created_ats.each do |day, dictionary| %>
+    <table class="table table-condensed col-sm-9">
+      <tr>
+        <th class="col-sm-1" >#</th>
+        <th class="col-sm-3" ><%= day.strftime("%Y-%m-%d") %></th>
+        <th class="col-sm-6" >Remark</th>
+        <th>Action</th>
+      </tr>
+      <% dictionary.each_with_index do |article,index| %>
+      <tr>
+          <td><%=index+1%></td>
+          <td><%= article.name %></td>
+          <td><%= article.remark %></td>
+          <td>
+            <%= link_to 'edit', edit_vocab_path(:id => article), :class => "btn btn-info btn-xs" %>
+            <%= link_to 'delete?', vocab_path(article), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-danger btn-xs" %>
+            <%= link_to 'reset', vocab_reset_path(:id => article), data: { confirm: "Are you sure?" }, :class => "btn btn-danger btn-xs" %></div>
+          </td>
+      </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>

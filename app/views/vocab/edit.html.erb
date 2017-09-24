@@ -1,0 +1,13 @@
+<%= form_for @dictionary, url: {action: "update"}, html: {class: "nifty_form"} do |f|  %>
+<div class="form-group col-sm-4">
+  <%= f.label :name %>
+  <%= f.text_field :name, :class=>"form-control" %>
+  <br />
+  <%= f.label :Remark %>
+  <%= f.text_field :remark, :class=>"form-control" %>
+  <br />
+  <%= f.text_field :created_at, :class=>"form-control", :readonly => true %>
+  <br />
+  <%= f.submit "Save", :class=>"btn btn-default" %>
+</div>
+<% end %>

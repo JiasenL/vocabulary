@@ -1,0 +1,15 @@
+<table class="table table-condensed col-sm-9">
+  <th class="col-sm-1" >#</th>
+  <th class="col-sm-3" ></th>
+  <th>Action</th>
+
+  <% revise_phase.each_with_index do |revise, index| %>
+  <% next if index > 4 %>
+  <tr>
+    <td><%=index+1%></td>
+    <td><%=revise.name %></td>
+    <td><%= link_to "revised?", revise_update_path(:revised =>revise.id), data: { confirm: "Are you sure?" }, :class => "btn btn-primary btn-xs"%>
+    <%= link_to 'reset', vocab_reset_path(:id => revise), data: { confirm: "Are you sure?" }, :class => "btn btn-danger btn-xs" %></td>
+  </tr>
+  <% end %>
+</table>
