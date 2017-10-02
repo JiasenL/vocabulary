@@ -1,8 +1,11 @@
-<table class="table table-condensed col-sm-9">
-  <th class="col-sm-1" >#</th>
-  <th class="col-sm-3" ></th>
-  <th>Action</th>
-
+<table class="table table-condensed col-sm-12 table-sm table-striped table-hover">
+ <thead>
+  <tr>
+  <th class="w-10">#</th>
+  <th class="w-70"></th>
+  <th class="w-20">Action</th>
+  </tr>
+</thead>
   <% revise_phase.each_with_index do |revise, index| %>
   <% next if index > 4 %>
   <tr>

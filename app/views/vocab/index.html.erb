@@ -1,33 +1,53 @@
-<div class="container">
+<div class="container-fiuld">
 <%= form_for :dictionary do |f| %>
   <p>
     <%= f.text_field :name,:value =>"" , :autofocus=>true %>
-    <%= f.submit  "Save Vocab"%>
+    <%= f.submit  "Save Vocab", :class=>"btn btn-success btn-sm" %>
   </p>
 <% end %>
 <h4>Stats</h4>
 <p>Vocab List: <%= @dictionary_total.count %></p>
 <h4>List</h4>
   <% @created_ats.each do |day, dictionary| %>
-    <table class="table table-condensed col-sm-9">
-      <tr>
-        <th class="col-sm-1" >#</th>
-        <th class="col-sm-3" ><%= day.strftime("%Y-%m-%d") %></th>
-        <th class="col-sm-6" >Remark</th>
-        <th>Action</th>
-      </tr>
+    <table class="table table-sm col-sm-9 table-striped table-hover">
+      <thead class="thead-inverse">
+        <tr>
+          <th class="w-10">#</th>
+          <th class="w-30"><%= day.strftime("%Y-%m-%d") %></th>
+          <th class="w-20"></th>
+          <th class="w-40">Help to remember</th>
+          <th>Action</th>
+        </tr>
+      </thead>
       <% dictionary.each_with_index do |article,index| %>
       <tr>
           <td><%=index+1%></td>
           <td><%= article.name %></td>
-          <td><%= article.remark %></td>
+          <td><a href="http://www.dictionary.com/browse/<%= article.name %>?s=t" target="_blank">EN</a> | 
+              <a href="http://dictionary.cambridge.org/dictionary/english-chinese-simplified/<%= article.name %>" target="_blank">CN</a></td>
           <td>
-            <%= link_to 'edit', edit_vocab_path(:id => article), :class => "btn btn-info btn-xs" %>
-            <%= link_to 'delete?', vocab_path(article), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-danger btn-xs" %>
-            <%= link_to 'reset', vocab_reset_path(:id => article), data: { confirm: "Are you sure?" }, :class => "btn btn-danger btn-xs" %></div>
+            <% if article.remark%>
+            <button type="button" class="btn btn-secondary btn-sm" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" data-content="<%= article.remark %>">
+            Hint
+            </button>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to 'edit', edit_vocab_path(:id => article), :class => "btn btn-info btn-sm" %>
+            <%= link_to 'delete?', vocab_path(article), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-danger btn-sm" %>
+            <%= link_to 'reset', vocab_reset_path(:id => article), data: { confirm: "Are you sure?" }, :class => "btn btn-danger btn-sm" %></div>
           </td>
       </tr>
       <% end %>
     </table>
   <% end %>
 </div>
+
+<script type="text/javascript">
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+$('.popover-dismiss').popover({
+  trigger: 'focus'
+})
+</script>
